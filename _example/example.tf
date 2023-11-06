@@ -1,16 +1,17 @@
 provider "azurerm" {
+  skip_provider_registration = "true"
   features {}
 }
 
 module "resource_group" {
-  source      = "git::git@github.com:opz0/terraform-azure-resource-group.git?ref=master"
-  name        = "appbastion"
+  source      = "git::https://github.com/opz0/terraform-azure-resource-group.git?ref=v1.0.0"
+  name        = "app"
   environment = "tested"
   location    = "North Europe"
 }
 
 module "vnet" {
-  source              = "git::git@github.com:opz0/terraform-azure-vnet.git?ref=master"
+  source              = "git::https://github.com/opz0/terraform-azure-vnet.git?ref=v1.0.0"
   name                = "app"
   environment         = "test"
   resource_group_name = module.resource_group.resource_group_name
@@ -19,13 +20,13 @@ module "vnet" {
 }
 
 module "name_specific_subnet" {
-  source = "git::git@github.com:opz0/terraform-azure-subnet.git?ref=master"
+  source = "git::https://github.com/opz0/terraform-azure-subnet.git?ref=v1.0.0"
 
   name                 = "app"
   environment          = "test"
   resource_group_name  = module.resource_group.resource_group_name
   location             = module.resource_group.resource_group_location
-  virtual_network_name = module.vnet.vnet_name[0]
+  virtual_network_name = join("", module.vnet[*].name)
 
   #subnet
   specific_name_subnet  = true

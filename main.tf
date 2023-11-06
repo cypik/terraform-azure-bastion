@@ -1,11 +1,13 @@
 module "labels" {
-  source      = "git::git@github.com:opz0/terraform-azure-labels.git?ref=master"
+  source      = "git::https://github.com/opz0/terraform-azure-labels.git?ref=v1.0.0"
   name        = var.name
   environment = var.environment
   managedby   = var.managedby
   label_order = var.label_order
   repository  = var.repository
 }
+
+#data "azurerm_client_config" "current" {}
 
 #---------------------------------------------
 # Public IP for Azure Bastion Service
@@ -44,6 +46,6 @@ resource "azurerm_bastion_host" "main" {
   ip_configuration {
     name                 = format("%s-network", module.labels.id)
     subnet_id            = var.subnet_id
-    public_ip_address_id = join("", azurerm_public_ip.pip.*.id)
+    public_ip_address_id = join("", azurerm_public_ip.pip[*].id)
   }
 }
