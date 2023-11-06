@@ -26,7 +26,7 @@ module "name_specific_subnet" {
   environment          = "test"
   resource_group_name  = module.resource_group.resource_group_name
   location             = module.resource_group.resource_group_location
-  virtual_network_name = join("", module.vnet[*].name)
+  virtual_network_name = module.vnet.name
 
   #subnet
   specific_name_subnet  = true
