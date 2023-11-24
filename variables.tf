@@ -18,8 +18,8 @@ variable "label_order" {
 
 variable "managedby" {
   type        = string
-  default     = ""
-  description = "ManagedBy, eg ''."
+  default     = "cypik"
+  description = "ManagedBy, eg 'cypik'."
 }
 
 variable "resource_group_name" {
