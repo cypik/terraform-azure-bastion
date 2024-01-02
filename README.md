@@ -19,10 +19,12 @@ This repository contains Terraform code to deploy resources on Microsoft Azure, 
 To use this module, you should have Terraform installed and configured for AZURE. This module provides the necessary Terraform configuration
 for creating AZURE resources, and you can customize the inputs as needed. Below is an example of how to use this module:
 
+# Example
+
 ```hcl
 module "bastion" {
   depends_on          = [module.resource_group]
-  source              = "git::https://github.com/opz0/terraform-azure-bastion.git?ref=v1.0.0"
+  source              = "git::https://github.com/cypik/terraform-azure-bastion.git?ref=v1.0.0"
   name                = "app"
   environment         = "test"
   resource_group_name = module.resource_group.resource_group_name
@@ -48,10 +50,10 @@ This module provides the following outputs:
 - 'bastion_dns_name': The FQDN for the Bastion Host.
 
 # Examples
-For detailed examples on how to use this module, please refer to the 'examples' directory within this repository.
+For detailed examples on how to use this module, please refer to the '[example](https://github.com/cypik/terraform-azure-bastion.git/blob/mster/_example)' directory within this repository.
 
 # License
-This Terraform module is provided under the '[License Name]' License. Please see the [LICENSE](https://github.com/opz0/terraform-azure-bastion/blob/readme/LICENSE) file for more details.
+This Terraform module is provided under the '[License Name]' License. Please see the [LICENSE](https://github.com/cypik/terraform-azure-bastion.git/blob/mster/LICENSE) file for more details.
 
 # Author
 Your Name
