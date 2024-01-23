@@ -97,7 +97,7 @@ variable "enabled" {
 
 variable "repository" {
   type        = string
-  default     = ""
+  default     = "https://github.com/cypik/terraform-azure-bastion"
   description = "Terraform current module repo"
 }
 
