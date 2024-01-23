@@ -1,5 +1,6 @@
 module "labels" {
-  source      = "git::https://github.com/cypik/terraform-azure-labels.git?ref=v1.0.0"
+  source      = "cypik/labels/azure"
+  version     = "1.0.1"
   name        = var.name
   environment = var.environment
   managedby   = var.managedby
@@ -28,8 +29,7 @@ resource "azurerm_public_ip" "pip" {
 # Azure Bastion Service host
 #---------------------------------------------
 resource "azurerm_bastion_host" "main" {
-  count = var.enabled ? 1 : 0
-
+  count                  = var.enabled ? 1 : 0
   name                   = format("%s-bastion", module.labels.id)
   location               = var.location
   resource_group_name    = var.resource_group_name
