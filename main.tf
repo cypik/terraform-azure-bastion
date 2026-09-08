@@ -1,14 +1,12 @@
 module "labels" {
   source      = "cypik/labels/azure"
-  version     = "1.0.1"
+  version     = "1.0.3"
   name        = var.name
   environment = var.environment
   managedby   = var.managedby
   label_order = var.label_order
   repository  = var.repository
 }
-
-#data "azurerm_client_config" "current" {}
 
 #---------------------------------------------
 # Public IP for Azure Bastion Service
